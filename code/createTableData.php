@@ -46,23 +46,19 @@ function create_certificated_table() {
     $table_name = $wpdb->prefix . 'certificated';
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE $table_name (
+    $sql = "
+    CREATE TABLE $table_name (
         Id int NOT NULL AUTO_INCREMENT,
         TemplateSVG longtext NOT NULL,
-		isDeleted boolean DEFAULT false,
+        isDeleted boolean DEFAULT false,
         createdAt datetime DEFAULT CURRENT_TIMESTAMP,
         userId int,
         PRIMARY KEY (Id),
-    ) $charset_collate;";
-
+        CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES {$wpdb->prefix}user_form(Id)
+    ) $charset_collate;
+";
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
-
-    //Thêm khóa ngoại
-    $foreign_key_sql = "ALTER TABLE $table_name
-                        ADD CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES {$wpdb->prefix}user_form(Id);";
-    
-    $wpdb->query($foreign_key_sql);
 }
 
 // Kết hợp các hàm tạo bảng vào một hàm

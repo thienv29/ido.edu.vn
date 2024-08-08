@@ -53,7 +53,7 @@ function handle_save_certificate() {
     if ($user) {
         $subject = 'Chứng chỉ của bạn đã được cấp';
         $certificate_id = $wpdb->insert_id; // Lấy ID của chứng chỉ vừa được chèn
-        $certificate_url = "http://localhost/myblog/certificate?id=$certificate_id";
+        $certificate_url = add_query_arg('id', $certificate_id, home_url('/certificate'));
 
         $message = "Chào " . esc_html($user->Name) . ",\n\n";
         $message .= "Chứng chỉ của bạn đã được cấp. Bạn có thể xem chứng chỉ của mình tại đường link sau:\n";
