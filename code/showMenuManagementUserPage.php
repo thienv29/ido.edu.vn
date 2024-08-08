@@ -436,6 +436,7 @@ function my_custom_user_management_page_html() {
                     const date = new Date().toLocaleDateString('en-GB')
 
                     if (action === 'certification') {
+                        showLoading()
                         $.ajax({
                             url: ajaxurl, // URL cho yêu cầu AJAX
                             type: 'POST',
@@ -453,6 +454,9 @@ function my_custom_user_management_page_html() {
                             },
                             error: function() {
                                 alert('Có lỗi xảy ra khi lấy chứng chỉ.');
+                            },
+                            complete: function() {
+                                hideLoading()
                             }
                         });
                     }
@@ -518,6 +522,7 @@ function my_custom_user_management_page_html() {
 
                 $('#result').on('click', '#restore', function() {
                     const userId = $(this).data('user_id');
+                    showLoading()
                     $.ajax({
                         url: ajaxurl,
                         type: 'POST',
@@ -531,13 +536,17 @@ function my_custom_user_management_page_html() {
                         },
                         error: function() {
                             alert('Có lỗi xảy ra khi khôi phục người dùng.');
+                        },
+                        complete: function() {
+                            hideLoading()
                         }
                     });
                 })
 
                 $('#saveCertificate').click(function() {
                     const certificate = $('#certificateContent').html()
-
+                    $('#certificationPopup').css('display', 'none');
+                    showLoading()
                     $.ajax({
                         url: ajaxurl,
                         type: 'POST',
@@ -552,6 +561,9 @@ function my_custom_user_management_page_html() {
                         },
                         error: function() {
                             alert('Có lỗi xảy ra khi lấy chứng chỉ.');
+                        },
+                        complete: function() {
+                            hideLoading()
                         }
                     });
                 })

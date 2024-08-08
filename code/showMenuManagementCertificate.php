@@ -87,6 +87,19 @@ function my_custom_certificate_management_page_html() {
             <button style="color: #fff; background-color: #007bff; border: none; padding: 6px 12px; cursor: pointer; border-radius: .25rem; margin-left: 6px" id="addCertificate">Thêm</button>
         </div>
     </div>
+    <div id="loading-container" style="display: none">
+        <img src="images/loading.gif" alt="Loading..." class="loading-gif"/>
+    </div>
+    <style>
+         #loading-container {
+            width: 100%;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+    </style>
     <script>
         jQuery(document).ready(function($) {
 
@@ -121,6 +134,7 @@ function my_custom_certificate_management_page_html() {
                 }
 
                 if (action === "update") {
+                    showLoading()
                     $.ajax({
                         url: ajaxurl,
                         type: 'POST',
@@ -136,6 +150,9 @@ function my_custom_certificate_management_page_html() {
                         },
                         error: function() {
                             alert('Có lỗi xảy ra khi cập nhật chứng chỉ.');
+                        },
+                        complete: function() {
+                            hideLoading()
                         }
                     });
                 }
@@ -160,7 +177,8 @@ function my_custom_certificate_management_page_html() {
                 // Lấy giá trị từ textarea và input
                 const textareaValue = $('#certificateContentUpdate').val();
                 const certificateName = $('#certificateName').val();
-
+                $('#certificationPopupUpdate').css('display', 'none')
+                showLoading()
                 $.ajax({
                     url: ajaxurl, 
                     type: 'POST',
@@ -181,6 +199,9 @@ function my_custom_certificate_management_page_html() {
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error('AJAX Error: ', textStatus, errorThrown);
                         alert('Có lỗi xảy ra khi cập nhật chứng chỉ.');
+                    },
+                    complete: function() {
+                        hideLoading()
                     }
                 });
             });
@@ -223,6 +244,8 @@ function my_custom_certificate_management_page_html() {
                 }
 
                 function saveCertificate(name, content) {
+                    $('#certificationPopupAdd').css('display', 'none')
+                    showLoading()
                     $.ajax({
                     url: ajaxurl, 
                     type: 'POST',
@@ -242,6 +265,9 @@ function my_custom_certificate_management_page_html() {
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error('AJAX Error: ', textStatus, errorThrown);
                         alert('Có lỗi xảy ra khi thêm chứng chỉ.');
+                    },
+                    complete: function() {
+                        hideLoading()
                     }
                     });
                 }
@@ -273,6 +299,14 @@ function my_custom_certificate_management_page_html() {
             $('#closePopupAdd').click(function() {
                 $('#certificationPopupAdd').css('display', 'none');
             });
+            
+            function showLoading() {
+                $('#loading-container').show();
+            }
+
+            function hideLoading() {
+                $('#loading-container').hide();
+            }
         })
     </script>
     <?php
