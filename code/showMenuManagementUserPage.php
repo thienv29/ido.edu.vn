@@ -8,7 +8,7 @@ function my_custom_user_management_page_html() {
 
     ?>
     <div class="wrap">
-        <h1>Quản lý người dùng</h1>
+        <h1 id="title" style="cursor: pointer">Quản lý người dùng</h1>
         <div style="margin: 20px 0;">
             <div class="d-flex" style="gap: 50px">
                 <div class="d-flex" style="gap: 12px">
@@ -108,8 +108,12 @@ function my_custom_user_management_page_html() {
                 border-radius: .25rem;
             }
 
-            select {
-                width: 130px;
+            select#filter {
+                width: 200px;
+            }
+
+            .user-action {
+                width: 120px;
             }
 
             #pagination {
@@ -142,6 +146,10 @@ function my_custom_user_management_page_html() {
                 window.onload = function() {
                    getListUsers();
                 };
+
+                $('#title').click(function() {
+                    location.reload()
+                })
 
                 const listFunctions = {
                     'getListUsers': getListUsers,
@@ -295,13 +303,13 @@ function my_custom_user_management_page_html() {
                 }
 
                 function showResult(users, page, totalPages, funcName, ref) {
-                    let tableHtml = '<table class="wp-list-table widefat fixed striped users" style="margin-top: 10px"><tr><th style="width: 30px">STT</th><th>Họ tên</th><th>Email</th><th>SĐT</th><th>Chứng chỉ</th><th>Ngày gửi</th><th>Trạng thái</th><th>Ngày cấp</th><th>Hoạt động</th><th>Hành động</th></tr>';
+                    let tableHtml = '<table class="wp-list-table widefat fixed striped users" style="margin-top: 10px"><tr><th style="width: 30px">STT</th><th style="width: 130px">Họ tên</th><th style="width: 160px">Email</th><th>SĐT</th><th>Chứng chỉ</th><th>Ngày gửi</th><th>Trạng thái</th><th>Ngày cấp</th><th>Hoạt động</th><th>Hành động</th></tr>';
                     users.forEach((user, index) => {
                         const stt = (page - 1) * 5 + index + 1; // Calculate STT
                         tableHtml += `<tr>
                                         <td style="width: 30px">${stt}</td>
                                         <td>${user.Name}</td>
-                                        <td>${user.Email}</td>
+                                        <td style="width: 150px">${user.Email}</td>
                                         <td>${user.Phone}</td>
                                         <td>${user.certificate_name}</td>
                                         <td>${formatDate(user.submittedAt)}</td>

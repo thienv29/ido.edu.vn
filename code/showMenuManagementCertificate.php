@@ -19,7 +19,7 @@ function my_custom_certificate_management_page_html() {
     // Hiển thị danh sách chứng chỉ
     ?>
     <div class="wrap">
-        <h1>Quản lý Chứng chỉ</h1>
+        <h1 id="title" style="cursor: pointer">Quản lý Chứng chỉ</h1>
         <button id="add" style="color: #fff; background-color: #007bff; border: none; padding: 6px 12px;margin-top: 15px; cursor: pointer; border-radius: .25rem; margin-bottom: 8px">Thêm chứng chỉ</button>
         <table class="wp-list-table widefat fixed striped users">
             <thead>
@@ -89,6 +89,11 @@ function my_custom_certificate_management_page_html() {
     </div>
     <script>
         jQuery(document).ready(function($) {
+
+            $('#title').click(function() {
+                location.reload()
+            })
+
             let currentCertificateId = null;
 
             $('.certificate-action').change(function() {
