@@ -29,4 +29,4 @@ Bước 1: Tạo trang mới và add shortcode [display_certificate_by_id] cho t
 
 Bước 2: Tạo trang mới và add shortcode [certificate_input_form] cho trang nhập id chứng chỉ.
 
-Bước 3: Điều chỉ path của trang /certificate cho trang xem chứng chỉ và /certificate-view cho trang nhập id chứng chỉ.
+Bước 3: Điều chỉnh path của trang /certificate cho trang xem chứng chỉ và /certificate-view cho trang nhập id chứng chỉ.
