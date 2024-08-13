@@ -2,7 +2,7 @@
 function handle_update_certificate() {
     $certificateId = isset($_POST['id']) ? intval($_POST['id']) : 0;
     $certificateName = isset($_POST['name']) ? $_POST['name'] : '';
-    $contentSVG = isset($_POST['content']) ? wp_kses_post(stripslashes($_POST['content'])) : '';
+    $contentSVG = isset($_POST['content']) ? stripslashes($_POST['content']) : '';
 
     global $wpdb;
     $table_certificate = $wpdb->prefix . 'certificate';
