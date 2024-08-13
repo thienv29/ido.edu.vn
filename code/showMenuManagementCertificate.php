@@ -1,12 +1,10 @@
 <?php 
-//Hàm hiển thị nối dung trang quản lý chứng chỉ
 function my_custom_certificate_management_page_html() {
 	// Kiểm tra quyền truy cập
     if (!current_user_can('manage_options')) {
         return;
     }
 
-    // Lấy danh sách chứng chỉ từ database
     global $wpdb;
 	$certificate_table = $wpdb->prefix . 'CERTIFICATE';
 	$certificates = $wpdb->get_results("
@@ -16,7 +14,6 @@ function my_custom_certificate_management_page_html() {
         WHERE isDeleted != 1
     ");
 
-    // Hiển thị danh sách chứng chỉ
     ?>
     <div class="wrap">
         <h1 id="title" style="cursor: pointer">Quản lý Chứng chỉ</h1>

@@ -1,9 +1,8 @@
 <?php 
 function handle_get_users_by_date() {
-    // Lấy và làm sạch dữ liệu ngày từ POST
     $date = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : '';
 
-    // Kết nối với cơ sở dữ liệu
+
     global $wpdb;
     $table_user = $wpdb->prefix . 'user_form';
     $table_certificated = $wpdb->prefix . 'certificated';
@@ -45,11 +44,10 @@ function handle_get_users_by_date() {
          WHERE DATE(c.createdAt) = %s LIMIT %d OFFSET %d", $date, $per_page, $offset
     );
 
-    // Thực hiện truy vấn
     $results = $wpdb->get_results($query);
     $total_pages = ceil($total_record / $per_page);
 
-    // Kiểm tra lỗi và trả kết quả
+
     if ($results === false) {
         error_log('Error: ' . $wpdb->last_error);
         wp_send_json_error('Có lỗi xảy ra khi lấy danh sách người dùng.');

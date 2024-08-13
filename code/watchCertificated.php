@@ -1,6 +1,5 @@
 <?php 
 function display_certificate_by_id_shortcode($atts) {
-    // Lấy ID chứng chỉ từ query string
     $certificate_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     ob_start();
 
@@ -12,7 +11,6 @@ function display_certificate_by_id_shortcode($atts) {
     global $wpdb;
     $table_certificated = $wpdb->prefix . 'certificated';
 
-    // Lấy chứng chỉ từ bảng dựa trên ID
     $certificate = $wpdb->get_row($wpdb->prepare("
         SELECT TemplateSVG, createdAt
         FROM $table_certificated

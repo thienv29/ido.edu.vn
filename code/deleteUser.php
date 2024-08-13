@@ -7,13 +7,12 @@ function handle_delete_user() {
 
     $update_result = $wpdb->update(
         $table_users,
-        ['isDeleted' => 1], // Cập nhật giá trị cột
-        ['Id' => $userId], // Điều kiện để cập nhật
-        ['%d'], // Định dạng dữ liệu
-        ['%d'] // Định dạng điều kiện
+        ['isDeleted' => 1],
+        ['Id' => $userId],
+        ['%d'],
+        ['%d']
     );
 
-    // Kiểm tra lỗi khi cập nhật dữ liệu
     if ($update_result === false) {
         error_log('Error updating user data: ' . $wpdb->last_error);
         wp_send_json_error('Có lỗi xảy ra khi xóa thông tin người dùng.');
@@ -21,6 +20,6 @@ function handle_delete_user() {
 
     wp_send_json_success('Xóa người dùng thành công.');
 
-    wp_die(); // Kết thúc AJAX request
+    wp_die();
 }
 ?>

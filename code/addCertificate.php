@@ -14,7 +14,6 @@ function handle_add_certificate() {
         ],
     );
 
-    //Kiểm tra lỗi khi cập nhật dữ liệu
     if ($update_result === false) {
         error_log('Error: ' . $wpdb->last_error);
         wp_send_json_error('Có lỗi xảy ra khi thêm chứng chỉ.');
@@ -22,6 +21,6 @@ function handle_add_certificate() {
 
     wp_send_json_success('Thêm chứng chỉ thành công.');
 
-    wp_die(); // Kết thúc AJAX request
+    wp_die();
 }
 ?>

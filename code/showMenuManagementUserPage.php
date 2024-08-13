@@ -438,19 +438,19 @@ function my_custom_user_management_page_html() {
                     if (action === 'certification') {
                         showLoading()
                         $.ajax({
-                            url: ajaxurl, // URL cho yêu cầu AJAX
+                            url: ajaxurl,
                             type: 'POST',
                             data: {
-                                action: 'get_certificate', // Tên của action PHP để xử lý yêu cầu
-                                id: certificateId // ID Chứng chỉ
+                                action: 'get_certificate',
+                                id: certificateId
                             },
                             success: function(response) {
                                 
                                 const replacedName = response.data.TemplateSVG.replace("{name}", userName);
                                 const newResult = replacedName.replace("{date}", date)
                                
-                                $('#certificateContent').html(newResult); // Hiển thị chứng chỉ trong popup
-                                $('#certificationPopup').css('display', 'block'); // Hiển thị popup
+                                $('#certificateContent').html(newResult);
+                                $('#certificationPopup').css('display', 'block');
                             },
                             error: function() {
                                 alert('Có lỗi xảy ra khi lấy chứng chỉ.');
@@ -464,11 +464,11 @@ function my_custom_user_management_page_html() {
                     if (action === 'delete') {
                         if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
                             $.ajax({
-                            url: ajaxurl, // URL cho yêu cầu AJAX, WordPress cung cấp ajaxurl sẵn
+                            url: ajaxurl,
                             type: 'POST',
                             data: {
-                                action: 'delete_user', // Tên của action PHP để xử lý yêu cầu
-                                id: currentUserId // ID Chứng chỉ
+                                action: 'delete_user',
+                                id: currentUserId
                             },
                             success: function(response) {
                                 alert("Đã xóa thành công.")
@@ -484,7 +484,7 @@ function my_custom_user_management_page_html() {
                     if (action === 'cancelCertificate') {
                         if (confirm("Bạn có chắc chắn muốn hủy chứng chỉ của người dùng này không?")) {
                             $.ajax({
-                            url: ajaxurl, // URL cho yêu cầu AJAX, WordPress cung cấp ajaxurl sẵn
+                            url: ajaxurl,
                             type: 'POST',
                             data: {
                                 action: 'cancel_certificate',
@@ -507,7 +507,7 @@ function my_custom_user_management_page_html() {
                             type: 'POST',
                             data: {
                                 action: 'restore_certificate',
-                                id: currentUserId // ID Chứng chỉ
+                                id: currentUserId
                             },
                             success: function(response) {
                                 alert("Đã khôi phục chứng chỉ thành công.")
@@ -589,7 +589,7 @@ function my_custom_user_management_page_html() {
                 if (dateString === "0000-00-00 00:00:00") return "-"
                 const date = new Date(dateString);
                 const day = String(date.getDate()).padStart(2, '0');
-                const month = String(date.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
+                const month = String(date.getMonth() + 1).padStart(2, '0');
                 const year = date.getFullYear();
                 return `${day}/${month}/${year}`;
             }

@@ -8,13 +8,12 @@ function handle_restore_certificate() {
 
     $update_result = $wpdb->update(
         $table_certificated,
-        ['isDeleted' => 0], // Cập nhật giá trị cột
-        ['userId' => $userId], // Điều kiện để cập nhật
-        ['%d'], // Định dạng dữ liệu
-        ['%d'] // Định dạng điều kiện
+        ['isDeleted' => 0],
+        ['userId' => $userId], 
+        ['%d'], 
+        ['%d']
     );
 
-    // Kiểm tra lỗi khi cập nhật dữ liệu
     if ($update_result === false) {
         error_log('Error: ' . $wpdb->last_error);
         wp_send_json_error('Có lỗi xảy ra khi khôi phục chứng chỉ.');
@@ -22,13 +21,12 @@ function handle_restore_certificate() {
 
     $update_result_user = $wpdb->update(
         $table_user,
-        ['isCertified' => 1], // Cập nhật giá trị cột
-        ['Id' => $userId], // Điều kiện để cập nhật
-        ['%d'], // Định dạng dữ liệu
-        ['%d'] // Định dạng điều kiện
+        ['isCertified' => 1],
+        ['Id' => $userId],
+        ['%d'],
+        ['%d'] 
     );
 
-     // Kiểm tra lỗi khi cập nhật dữ liệu
      if ($update_result_user === false) {
         error_log('Error: ' . $wpdb->last_error);
         wp_send_json_error('Có lỗi xảy ra khi khôi phục chứng chỉ.');
@@ -36,6 +34,6 @@ function handle_restore_certificate() {
 
     wp_send_json_success('Chứng chỉ đã được khôi phục thành công.');
 
-    wp_die(); // Kết thúc AJAX request
+    wp_die();
 }
 ?>

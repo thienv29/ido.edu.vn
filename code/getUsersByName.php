@@ -37,9 +37,9 @@ function handle_get_users_by_name() {
         LEFT JOIN $table_certificated d ON u.Id = d.userId
         WHERE u.Name LIKE %s
         LIMIT %d OFFSET %d",
-        '%' . $wpdb->esc_like($name) . '%', // Tên tham số đầu tiên
-        $per_page, // Số bản ghi mỗi trang (LIMIT)
-        $offset    // Vị trí bắt đầu (OFFSET)
+        '%' . $wpdb->esc_like($name) . '%',
+        $per_page,
+        $offset 
     );
 
     $results = $wpdb->get_results($query);

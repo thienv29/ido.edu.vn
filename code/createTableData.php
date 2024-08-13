@@ -1,5 +1,4 @@
 <?php  
-//Hàm tạo table user
 function create_user_data_table() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'user_form';
@@ -22,7 +21,6 @@ function create_user_data_table() {
     dbDelta($sql);
 }
 
-//Hàm tạo table certificate
 function create_certificate_table() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'certificate';
@@ -40,7 +38,6 @@ function create_certificate_table() {
     dbDelta($sql);
 }
 
-//Hàm tạo table certificate đã cấp
 function create_certificated_table() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'certificated';
@@ -61,7 +58,6 @@ function create_certificated_table() {
     dbDelta($sql);
 }
 
-// Kết hợp các hàm tạo bảng vào một hàm
 function create_all_custom_tables() {
 	create_certificate_table();
     create_user_data_table();

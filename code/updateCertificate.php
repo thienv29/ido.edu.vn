@@ -10,13 +10,13 @@ function handle_update_certificate() {
     $update_result = $wpdb->update(
         $table_certificate,
         [
-            'TemplateSVG' => $contentSVG, // Cập nhật TemplateSVG
-            'Name' => $certificateName     // Cập nhật Name
+            'TemplateSVG' => $contentSVG,
+            'Name' => $certificateName  
         ],
-        ['Id' => $certificateId] // Điều kiện để cập nhật
+        ['Id' => $certificateId]
     );
 
-    // Kiểm tra lỗi khi cập nhật dữ liệu
+   
     if ($update_result === false) {
         error_log('Error: ' . $wpdb->last_error);
         wp_send_json_error('Có lỗi xảy ra khi cập nhật chứng chỉ.');
@@ -24,6 +24,6 @@ function handle_update_certificate() {
 
     wp_send_json_success('Chứng chỉ đã được cập nhật thành công.');
 
-    wp_die(); // Kết thúc AJAX request
+    wp_die();
 }
 ?>
