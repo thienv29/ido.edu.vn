@@ -73,7 +73,7 @@ $users = $wpdb->get_results("SELECT u.id, u.name as uname, u.phone, u.email, u.c
                               ORDER BY u.id DESC  
                               LIMIT $record_per_page OFFSET $skip_value");
 
-$certificates = $wpdb->get_results("SELECT id,name FROM $cer_table_name");
+$certificates = $wpdb->get_results("SELECT id,name FROM $cer_table_name WHERE isDeleted LIKE 0");
 
 
 $total_record = $wpdb->get_var("SELECT COUNT(*) 

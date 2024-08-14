@@ -155,7 +155,7 @@ $certificates = $wpdb->get_results("SELECT * FROM $table_name WHERE isDeleted LI
     </div>
   </div>
   <div class="modal" id="addModal">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
 
         <!-- Modal Header -->
@@ -195,7 +195,7 @@ $certificates = $wpdb->get_results("SELECT * FROM $table_name WHERE isDeleted LI
     </div>
   </div>
   <div class="modal" id="editModal">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
 
         <!-- Modal Header -->
